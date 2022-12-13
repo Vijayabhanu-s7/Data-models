@@ -1,0 +1,25 @@
+Therapist information:
+
+profile photo(binary)
+Name (string)
+email (string)
+Date of birth (date)
+Gender (string)
+
+Emergency Contact information 
+
+first name(string)
+last name(string)
+phone(string)
+relation(string)
+brief bio(string)
+
+Appointments:
+
+Date and time (date/time)
+
+Diagnoses and treatment plans:
+
+preferred language(string)
+
+
