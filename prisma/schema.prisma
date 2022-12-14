@@ -1,0 +1,99 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+model therapistInformation { 
+  id              Int      @id @default(autoincrement())
+  createdAt       DateTime @default(now())
+  profilePhoto    binary @unique
+
+  email           String   @unique
+  name            String?
+  gender          String
+  preferredPronouns String
+
+  dateOfBirth     date
+  
+}
+model emergencyContactInformation{
+  firstName           String  @db.VarChar(255)
+  lastName            String  @db.VarChar(255)
+  relationToYou       String  @db.VarChar(255)
+  birefBio            String  @db.VarChar(255)
+  availableTime       DateTime  @default(now())
+  whyMarvin           String  @db.VarChar(255)
+}
+
+model Practice{
+  modalities                    String  @db.VarChar(255)
+  experience                    String  @db.VarChar(255)
+  preferredLanguage             String  @db.VarChar(255)
+  groupTherapySessions          Boolean @default(false)
+  abilityToPracticeUnderPSYPACT Boolean @default(false)
+  CAQHProfile                   Boolean @default(false)
+  therapeuticPreference         Preference[]
+
+}
+
+
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  published Boolean  @default(false)
+  title     String   @db.VarChar(255)
+  author    User?    @relation(fields: [authorId], references: [id])
+  authorId  Int?
+}
+model Preference{
+  preferredId Int   @id @default(autoincrement())
+  directiveness Directiveness[]
+  emotionalIntensity EmotionalIntensity[]
+  pastOrPresentOrientation  PastOrPresentOrientation[]
+  supportOrChallenge        SupportOrChallenge[]
+}
+
+model Directiveness{
+  specificFocus  String 
+  struredTherapy String
+  teachClientSkillls  String
+  giveClientsHomework  String
+  TakeTheLead         String
+}
+
+model EmotionalIntensity{
+  encourageDifficultEmotions    String
+  talkTherapyRelationship       String
+  focusRelationshipBetweenUs     String
+  encourageFeelings             String
+  focusOnFeelings               String
+}
+
+model PastOrPresentOrientation{
+clientsLifeInThePast      String
+clientsLifeInThePresent   String
+reflectOnChildHood        String
+reflectOnadultHood        String
+focusOnClientsPast        String
+focusOnClientsFuture      String
+}
+
+modele SupportOrChallenge{
+  beGentle      String
+  beChallenging String
+  NotInterruptClients String
+  interruptClients  String
+  notBeChallenging  String
+  beChallenging     String
+  supportClientsBehaviour String
+  challengeClientsBehaviour String
+
+}
