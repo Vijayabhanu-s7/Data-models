@@ -86,7 +86,7 @@ focusOnClientsPast        String
 focusOnClientsFuture      String
 }
 
-modele SupportOrChallenge{
+model SupportOrChallenge{
   beGentle      String
   beChallenging String
   NotInterruptClients String
